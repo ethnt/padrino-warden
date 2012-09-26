@@ -14,7 +14,7 @@ module Padrino
           render settings.auth_login_template
         end
 
-        get :login do
+        get :new, :map => "/login" do
           if settings.auth_use_oauth && !@auth_oauth_request_token.nil?
             session[:request_token] = @auth_oauth_request_token.token
             session[:request_token_secret] = @auth_oauth_request_token.secret
@@ -24,7 +24,7 @@ module Padrino
           end
         end
 
-        get :oauth_callback do
+        get :oauth do
           if settings.auth_use_oauth
             authenticate
             flash[:success] = settings.auth_success_message if flash
@@ -34,14 +34,14 @@ module Padrino
           end
         end
 
-        post :login do
+        post :create do
           authenticate
           flash[:success] = settings.auth_success_message if flash
           redirect settings.auth_use_referrer && session[:return_to] ? session.delete(:return_to) : 
                    settings.auth_success_path
         end
 
-        get :logout do
+        get :destroy, :map => "/logout" do
           logout
           flash[:success] = settings.deauth_success_message if flash
           redirect settings.auth_success_path
