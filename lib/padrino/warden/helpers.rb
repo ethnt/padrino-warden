@@ -63,9 +63,9 @@ module Padrino
         # upon successful authentication
         app.set :auth_use_referrer, false
         app.set :auth_error_message,   "You have provided invalid credentials."
-        app.set :auth_success_message, "You have logged in successfully."
-        app.set :deauth_success_message, "You have logged out successfully."
-        app.set :auth_login_template, 'sessions/login'
+        app.set :auth_success_message, "You've been logged in."
+        app.set :deauth_success_message, "You've been logged out."
+        app.set :auth_login_template, 'sessions/new'
         # OAuth Specific Settings
         app.set :auth_use_oauth, false
         
